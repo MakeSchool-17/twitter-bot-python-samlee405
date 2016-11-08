@@ -2,25 +2,32 @@ import random
 import sys
 import time
 
-def main():
-    start_time = time.time()
+def getRandomInt(numberOfLines):
+    return random.randint(0, numberOfLines - 1)
 
-    numberOfWords = int(sys.argv[1])
-
-    inputFile = open("/usr/share/dict/words")
+def readFile():
+    inputFile = open("/usr/share/dict/words", "r")
     data = inputFile.readlines()
-    numberOfLines = len(data)
+    inputFile.close()
 
+    return data
+
+def main():
+    numberOfWords = int(sys.argv[1])
     arrayOfWords = []
 
+    data = readFile()
+    numberOfLines = len(data)
+
     while numberOfWords > 0:
-        randomInt = random.randint(0, numberOfLines - 1)
-        randomWord = data[randomInt]
-        randomWord = randomWord[:-1]
+        randomInt = getRandomInt(numberOfLines)
+        randomWord = data[randomInt][:-1]
         arrayOfWords.append(randomWord)
 
         numberOfWords = numberOfWords - 1
 
-    print(time.time() - start_time)
+    print(" ".join(arrayOfWords))
 
+# start_time = time.time()
 main()
+# print(time.time() - start_time)
