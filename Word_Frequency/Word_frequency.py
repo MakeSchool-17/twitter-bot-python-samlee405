@@ -1,7 +1,6 @@
-import string
-
 def histogram(textFile):
     data = textFile
+    data = punctuationStrip(data)
     data = data.split(" ")
 
     outputArray = []
@@ -19,7 +18,11 @@ def histogram(textFile):
 
     return outputArray
 
-def unique_words(histogram):
+def punctuationStrip(word):
+    word = "".join(c for c in word if c not in ('!', '.', ':', ',', '\"', '/'))
+    return word
+
+def uniqueWords(histogram):
     return len(histogram)
 
 def frequency(word, histogram):
@@ -28,14 +31,14 @@ def frequency(word, histogram):
             return array[1]
     return 0
 
+def histogramConvert(textFile):
+    data = open(textFile)
 
-testString = "This is a sentence with several, repeating words balloon balloon balloon"
+
+testString = "This is a sentence with several, repeating words like balloon balloon balloon"
 
 histogram = histogram(testString)
 
 print(histogram)
-print(unique_words(histogram))
+print(uniqueWords(histogram))
 print(frequency("balloon", histogram))
-
-newString = testString.translate(string.maketrans("",""), string.punctuation)
-print(newString)
