@@ -1,4 +1,4 @@
-def histogram(textFile):
+def histogramString(textFile):
     data = textFile
     data = punctuationStrip(data)
     data = data.split(" ")
@@ -33,14 +33,31 @@ def frequency(word, histogram):
             return array[1]
     return 0
 
-def histogramConvert(textFile):
-    data = open(textFile)
+def histogramFile(textFile):
+    rawData = open(textFile)
+    data = []
+    for word in rawData.read().split():
+        data.append(word)
+
+
+    outputArray = []
+
+    for word in data:
+        isInList = False # Initialize isInList
+
+        for item in outputArray:
+            if word in item:
+                item[1] = item[1] + 1
+                isInList = True # Word is in list so change to true
+
+        # If the word is not in the list, create a new list for the new word and append it on.
+        # Otherwise, iterate through the rest of data.
+        if not isInList:
+            outputArray.append([word, 1])
+
+    return outputArray
 
 
 testString = "This is a sentence with several, repeating words like balloon balloon balloon"
 
-histogram = histogram(testString)
-
-print(histogram)
-print(uniqueWords(histogram))
-print(frequency("balloon", histogram))
+# print(histogramFile("text.txt"))
