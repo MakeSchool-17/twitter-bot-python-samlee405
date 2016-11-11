@@ -6,14 +6,16 @@ def histogram(textFile):
     outputArray = []
 
     for word in data:
-        testCase = "The word is not in the array, yet."
+        isInList = False # Initialize isInList
 
         for item in outputArray:
             if word in item:
                 item[1] = item[1] + 1
-                testCase = "The word is in the array."
+                isInList = True # Word is in list so change to true
 
-        if testCase == "The word is not in the array, yet.":
+        # If the word is not in the list, create a new list for the new word and append it on.
+        # Otherwise, iterate through the rest of data.
+        if not isInList:
             outputArray.append([word, 1])
 
     return outputArray
