@@ -1,11 +1,11 @@
-import word_frequency
+import wordFrequency
 import sys
 import random
 
 # Get a random word from a file
 def sample():
     textFile = sys.argv[1]
-    histogram = word_frequency.histogramFile(textFile)
+    histogram = wordFrequency.histogramFile(textFile)
     # print(histogram)
 
     # Get total count of words
@@ -49,4 +49,4 @@ def sampleTest(count):
     + str(threeCount) + "\n" + "four: " + str(fourCount) + "\n" + "fish: " + str(fishCount))
 
 # print(sample())
-sampleTest(8000)
+# sampleTest(8000)

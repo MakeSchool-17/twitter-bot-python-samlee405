@@ -57,6 +57,6 @@ def histogramFile(textFile):
     return outputArray
 
 
-testString = "This is a sentence with several, repeating words like balloon balloon balloon"
+# testString = "This is a sentence with several, repeating words like balloon balloon balloon"
 
 # print(histogramFile("text.txt"))
