@@ -1,0 +1,11 @@
+#!"/Users/SamLee/Desktop/Product Academy/Q2/TweetGenerator/twitter-bot-python-samlee405/5. HerokuServer/venv/bin/python"
+
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from pip import main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
