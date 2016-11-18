@@ -51,12 +51,45 @@ class Listogram(list):
                 return index
         return None
 
+class Dictogram(dict):
+
+    def __init__(self, iterable=None):
+        """Initialize this histogram as a new dict; update with given items"""
+        super(Dictogram, self).__init__()
+        self.types = 0  # the number of distinct item types in this histogram
+        self.tokens = 0  # the total count of all item tokens in this histogram
+        if iterable:
+            self.update(iterable)
+
+    def update(self, iterable):
+        """Update this histogram with the items in the given iterable"""
+        for word in iterable:
+            isInList = False
+
+            for item in self:
+                if word in item:
+                    self[item] += 1
+                    isInList = True
+                    self.tokens += 1
+
+            if not isInList:
+                self.tokens += 1
+                self.types += 1
+                self[word] = 1
+
+    def count(self, item):
+        """Return the count of the given item in this histogram, or 0"""
+        if item in self:
+            return self[item]
+
+        return 0
+
 
 def test_histogram(text_list):
     print('text list:', text_list)
 
-    # hist_dict = Dictogram(text_list)
-    # print('dictogram:', hist_dict)
+    hist_dict = Dictogram(text_list)
+    print('dictogram:', hist_dict)
 
     hist_list = Listogram(text_list)
     print('listogram:', hist_list)
@@ -87,24 +120,3 @@ if __name__ == '__main__':
     else:
         # test hisogram on given arguments
         test_histogram(arguments)
-
-# class Dictogram(dict):
-#
-#     def __init__(self, iterable=None):
-#         """Initialize this histogram as a new dict; update with given items"""
-#         super(Dictogram, self).__init__()
-#         self.types = 0  # the number of distinct item types in this histogram
-#         self.tokens = 0  # the total count of all item tokens in this histogram
-#         if iterable:
-#             self.update(iterable)
-#
-#     def update(self, iterable):
-#         """Update this histogram with the items in the given iterable"""
-#         for item in iterable:
-#             # TODO: increment item count
-#             pass
-#
-#     def count(self, item):
-#         """Return the count of the given item in this histogram, or 0"""
-#         # TODO: retrieve item count
-#         pass
